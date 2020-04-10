@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhoneBook</title>
+
+</head>
+<body>
+    <section class="phoneBoоk">
+        <div class="header">
+            <h2>Phone Boоk</h2>
+        </div>
+        <div class="bookWrap">
+            <div class="addContact">
+                <button class="addBtn">Open new contacts</button>
+            </div>
+            <div class="contactsList">
+                
+            </div>
+        </div>
+    </section>
+    <script type ="text\template" id="newContactTemplate">
+        <div class="contact">
+            <h3>{{name}}</h3>
+            <div class="contactInfo">
+                <ul class="numbers">
+                    <li class="number">{{number}}</li>
+                </ul>
+                <div class="emailContact">{{email}}</div>
+                <div>{{dateBirth}}</div>
+            </div>
+        </div>
+    </script>
+</body>
+</html>
