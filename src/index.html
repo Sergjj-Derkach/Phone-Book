@@ -13,13 +13,39 @@
         </div>
         <div class="bookWrap">
             <div class="addContact">
-                <button class="addBtn">Open new contacts</button>
+                <button class="addBtn">Create new contacts</button>
             </div>
             <div class="contactsList">
                 
             </div>
         </div>
     </section>
+    <form class="form">
+        <div class="newContact">
+            <div class="closeForm">
+                <button class="close">Закрыть</button>
+            </div>
+            <div class="contactName border">
+                <span>Имя</span>
+                <input type="text" placeholder="Введите имя...">
+            </div>
+            <div class="contactNumber border">
+                <span>Номер телефона</span>
+                <input type="text" placeholder="Введите номер...">
+            </div>
+            <div class="contactEmail border">
+                <span>Email</span>
+                <input type="text" placeholder="Введите Email...">
+            </div>
+            <div class="contactDateBirth border">
+                <span>Дата рождения</span>
+                <input type="date" class="inputDateBirth">
+            </div>
+            <div class="submit">
+                <button class="addCont">Добавить контакт</button>
+            </div>
+        </div> 
+    </form>
     <script type ="text\template" id="newContactTemplate">
         <div class="contact">
             <h3>{{name}}</h3>

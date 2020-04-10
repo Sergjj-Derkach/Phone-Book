@@ -7,13 +7,17 @@
     padding: 50px 0;
     font-size: 36px;
     text-align: center;
-    background-color: blueviolet;
+    background-color: grey;
 }
 .contactsList{
     padding: 50px; 
     margin: 0 100px;
     background-color: indianred;
     border-radius: 50px;
+    min-height: 800px;
+}
+.blur{
+    filter: blur(2px);
 }
 .contact{
     background-color: khaki;
@@ -26,14 +30,73 @@
     display: flex;
     justify-content: center;
     padding: 20px;
-    background-color: rgb(50, 190, 97);
+    border-bottom:3px solid darkgray;
+    margin-bottom: 30px;
 }
 .addBtn{
     margin: 0 auto;
-    background-color: green;
+    background-color: grey;
     padding: 10px 15px;
     border-radius: 10px;
 }
-/* .contactInfo{
+.form{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
     display: none;
-} */
+   
+}
+.newContact{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    min-height: 300px;
+    background-color:rgb(26, 57, 107);
+    border-radius: 40px;
+    padding: 30px;
+}
+.border{
+    margin-top: 20px;
+    border-bottom: 1px solid black;
+    padding-left: 10px;
+
+}
+.newContact > div > span{
+    display: inline-block;
+    width: 130px;
+    font-size: 17px;
+}  
+.newContact > div > input{
+    border: 1px solid yellow;
+    margin-bottom: 3px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: thistle;
+}
+.inputDateBirth{
+    width: 216px;
+}
+.submit{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.addCont{
+    padding: 10px 15px;
+    background-color: yellowgreen;
+    font-size: 25px;
+    border-radius: 15px;
+}
+.closeForm{
+    display: flex;
+    justify-content: flex-end;
+}
+.close{
+    padding: 5px 10px;
+    background-color: crimson;
+    border-radius: 15px;
+}
