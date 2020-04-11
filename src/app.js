@@ -1,16 +1,31 @@
 import './reset.css';
 import './styles.css';
 
+const LOCALSTORAGE_KEY = 'contacts';
+
 const booksphone = document.querySelector('.bookWrap');
 const contactList = document.querySelector('.contactsList');
-const addBtnContact = document.querySelector('.addBtn');
 const form = document.querySelector('.form');
 const book = document.querySelector('.phoneBoоk');
 const newContactTemplate = document.querySelector('#newContactTemplate').innerHTML;
+const nameContact = document.querySelector('.nameContact');
+const numberContact = document.querySelector('.numberContact');
+const emailContact = document.querySelector('.emailContact');
+const dateBirth = document.querySelector('.inputDateBirth');
+
+
+let listContacts = [];
 
 booksphone.addEventListener('click', onBooksPhoneClick);
 form.addEventListener('click', onFormClick);
 
+init();
+
+function init(){
+    listContacts = localStorage.getItem(LOCALSTORAGE_KEY);
+    listContacts = listContacts ? JSON.parse : [];
+
+}
 
 function onFormClick(e){
     e.preventDefault();
@@ -28,17 +43,16 @@ function onFormClick(e){
 }
 function onBooksPhoneClick(e){
     switch(true){
-        case e.target.classList.contains('addBtn'):
+        case e.target.classList.contains('createContact'):
             openFormCreateContact();
         break;
     }
 }
 
-function addNewContact(){
-
-
-    
+function addNewContact(){    
+    renderContact();
     closeForm();
+
 }
 
 function openFormCreateContact(){
@@ -48,7 +62,6 @@ function openFormCreateContact(){
 
 function showForm(){
     form.style.display = 'block';  
-   
 }
 
 function cssBlur(){
@@ -62,4 +75,17 @@ function closeForm(){
 
 function deleteClassBlur(){
     book.classList.remove('blur');
+}
+
+function renderContact(){
+    contactList.innerHTML += ContactTemplate();    
+}
+
+function ContactTemplate(){   
+    let id = Date.now();    
+    return newContactTemplate.replace('{{id}}',id)
+                            .replace('{{name}}',nameContact.value)
+                            .replace('{{number}}',numberContact.value)
+                            .replace('{{email}}',emailContact.value)
+                            .replace('{{dateBirth}}',dateBirth.value);
 }

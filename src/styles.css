@@ -33,7 +33,7 @@
     border-bottom:3px solid darkgray;
     margin-bottom: 30px;
 }
-.addBtn{
+.createContact{
     margin: 0 auto;
     background-color: grey;
     padding: 10px 15px;
@@ -77,13 +77,16 @@
     border-radius: 5px;
     background-color: thistle;
 }
-.inputDateBirth{
-    width: 216px;
+.saveDate{
+    background-color: yellowgreen;
+    padding: 5px;
+    border-radius: 3px;
 }
 .submit{
     display: flex;
     justify-content: center;
     margin-top: 15px;
+
 }
 .addCont{
     padding: 10px 15px;

@@ -13,7 +13,7 @@
         </div>
         <div class="bookWrap">
             <div class="addContact">
-                <button class="addBtn">Create new contacts</button>
+                <button class="createContact">Create new contacts</button>
             </div>
             <div class="contactsList">
                 
@@ -27,19 +27,19 @@
             </div>
             <div class="contactName border">
                 <span>Имя</span>
-                <input type="text" placeholder="Введите имя...">
+                <input type="text" placeholder="Введите имя..." class="nameContact">
             </div>
             <div class="contactNumber border">
                 <span>Номер телефона</span>
-                <input type="text" placeholder="Введите номер...">
+                <input type="text" placeholder="Введите номер..." class="numberContact">
             </div>
             <div class="contactEmail border">
                 <span>Email</span>
-                <input type="text" placeholder="Введите Email...">
+                <input type="text" placeholder="Введите Email..." class="emailContact">
             </div>
             <div class="contactDateBirth border">
                 <span>Дата рождения</span>
-                <input type="date" class="inputDateBirth">
+                <input type="date" class="inputDateBirth" class="contDateBirth">
             </div>
             <div class="submit">
                 <button class="addCont">Добавить контакт</button>
@@ -47,14 +47,14 @@
         </div> 
     </form>
     <script type ="text\template" id="newContactTemplate">
-        <div class="contact">
+        <div class="contact" id="{{id}}">
             <h3>{{name}}</h3>
             <div class="contactInfo">
                 <ul class="numbers">
                     <li class="number">{{number}}</li>
                 </ul>
                 <div class="emailContact">{{email}}</div>
-                <div>{{dateBirth}}</div>
+                <div><span>{{dateBirth}}</span></div>
             </div>
         </div>
     </script>
