@@ -15,17 +15,22 @@ const dateBirth = document.querySelector('.inputDateBirth');
 
 
 let listContacts = [];
+let id = Date.now();
+
+
+listContacts = localStorage.getItem(LOCALSTORAGE_KEY);
+listContacts = listContacts ? JSON.parse(listContacts) : [];
+console.log(listContacts);
 
 booksphone.addEventListener('click', onBooksPhoneClick);
 form.addEventListener('click', onFormClick);
 
-init();
+// init();
 
-function init(){
-    listContacts = localStorage.getItem(LOCALSTORAGE_KEY);
-    listContacts = listContacts ? JSON.parse : [];
-
-}
+// function init(){
+//     renderContacts();
+   
+// }
 
 function onFormClick(e){
     e.preventDefault();
@@ -58,8 +63,12 @@ function addNewContact(){
 function openFormCreateContact(){
     cssBlur();
     showForm();
+    resetForm();
 }
 
+function resetForm(){
+    form.reset();
+}
 function showForm(){
     form.style.display = 'block';  
 }
@@ -77,15 +86,35 @@ function deleteClassBlur(){
     book.classList.remove('blur');
 }
 
-function renderContact(){
-    contactList.innerHTML += ContactTemplate();    
+function renderContact(contact){
+    createContact();
+    contactList.innerHTML += createContact();    
 }
 
-function ContactTemplate(){   
-    let id = Date.now();    
-    return newContactTemplate.replace('{{id}}',id)
-                            .replace('{{name}}',nameContact.value)
-                            .replace('{{number}}',numberContact.value)
-                            .replace('{{email}}',emailContact.value)
-                            .replace('{{dateBirth}}',dateBirth.value);
+function createContact(){
+    let id = Date.now();   
+
+    let contact ={
+        id:id,
+        name:nameContact.value,
+        number:numberContact.value,
+        email:emailContact.value,
+        dateBirth:dateBirth.value
+    }
+    saveStorage();
+    listContacts.push(contact);    
+
+    return newContactTemplate.replace('{{id}}',contact.id)
+                            .replace('{{name}}',contact.name)
+                            .replace('{{number}}',contact.number)
+                            .replace('{{email}}',contact.email)
+                            .replace('{{dateBirth}}',contact.dateBirth);
+}
+
+function saveStorage(){
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(listContacts));
+}
+
+function renderListContacts(contact){
+    listContacts.forEach(contact=>)
 }
