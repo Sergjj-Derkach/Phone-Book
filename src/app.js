@@ -25,12 +25,11 @@ console.log(listContacts);
 booksphone.addEventListener('click', onBooksPhoneClick);
 form.addEventListener('click', onFormClick);
 
-// init();
+init();
 
-// function init(){
-//     renderContacts();
-   
-// }
+function init(){
+    renderListContacts();
+}
 
 function onFormClick(e){
     e.preventDefault();
@@ -115,6 +114,18 @@ function saveStorage(){
     localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(listContacts));
 }
 
-function renderListContacts(contact){
-    listContacts.forEach(contact=>)
+function renderListContacts(){
+
+    listContacts.forEach(storageContactTemplte);
+    
+}
+function storageContactTemplte(item){
+    console.log(item);
+    newContactTemplate.replace('{{id}}',item.id)
+                    .replace('{{name}}',item.name)
+                    .replace('{{number}}',item.number)
+                    .replace('{{email}}',item.email)
+                    .replace('{{dateBirth', item.dateBirth);
+    
+    contactList.innerHTML += newContactTemplate;
 }
