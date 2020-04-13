@@ -121,11 +121,12 @@ function renderListContacts(){
 }
 function storageContactTemplte(item){
     console.log(item);
-    newContactTemplate.replace('{{id}}',item.id)
-                    .replace('{{name}}',item.name)
-                    .replace('{{number}}',item.number)
-                    .replace('{{email}}',item.email)
-                    .replace('{{dateBirth', item.dateBirth);
     
-    contactList.innerHTML += newContactTemplate;
+    const myFriend = newContactTemplate.replace('{{id}}', item.id)
+                    .replace('{{name}}', item.name)
+                    .replace('{{number}}', item.number)
+                    .replace('{{email}}', item.email)
+                    .replace('{{dateBirth', item.dateBirth);
+
+    contactList.innerHTML += myFriend;
 }
