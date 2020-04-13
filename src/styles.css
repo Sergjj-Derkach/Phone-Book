@@ -12,7 +12,6 @@
 .contactsList{
     padding: 50px; 
     margin: 0 100px;
-    background-color: indianred;
     border-radius: 50px;
     min-height: 800px;
 }
@@ -20,6 +19,8 @@
     filter: blur(2px);
 }
 .contact{
+    display: flex;
+    justify-content: space-between;
     background-color: khaki;
     padding: 10px 15px;
     border-radius: 10px;
@@ -102,4 +103,36 @@
     padding: 5px 10px;
     background-color: crimson;
     border-radius: 15px;
+}
+.contactName{
+    width: 100px;
+    border-right: 2px solid red;
+}
+.contactInfo{
+    width: 650px;
+    border-right: 2px solid red;
+    display: flex;
+    flex-grow: 0.85;
+}
+.emailContact{
+    flex-grow:0.9;
+}
+.contactInfo > div{
+    width: 27%;
+}
+.deleteContact,.editContact{
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-size: 18px;
+}
+
+.deleteContact{
+    background-color: red;
+    margin-right: 7px;
+}
+.deleteContact:hover, .editContact:hover{
+    box-shadow: 0 0 5px 3px rgb(43, 46, 42);
+}
+.editContact{
+    background-color: royalblue;
 }

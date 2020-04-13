@@ -25,7 +25,7 @@
             <div class="closeForm">
                 <button class="close">Закрыть</button>
             </div>
-            <div class="contactName border">
+            <div class="nameForm border">
                 <span>Имя</span>
                 <input type="text" placeholder="Введите имя..." class="nameContact">
             </div>
@@ -48,13 +48,15 @@
     </form>
     <script type ="text\template" id="newContactTemplate">
         <div class="contact" id="{{id}}">
-            <h3>{{name}}</h3>
+            <h3 class="contactName">{{name}}</h3>
             <div class="contactInfo">
-                <ul class="numbers">
-                    <li class="number">{{number}}</li>
-                </ul>
+                <div class="numbers">{{number}}</div>
                 <div class="emailContact">{{email}}</div>
-                <div><span>{{dateBirth}}</span></div>
+                <div class="dateBirthContact">{{dateBirth}}</div>
+            </div>
+            <div class="action">
+                <button class="deleteContact">Удалить</button>
+                <button class="editContact">Изменить</button>
             </div>
         </div>
     </script>
