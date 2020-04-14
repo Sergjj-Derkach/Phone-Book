@@ -10,8 +10,7 @@
     background-color: grey;
 }
 .contactsList{
-    padding: 50px; 
-    margin: 0 100px;
+    padding: 50px;
     border-radius: 50px;
     min-height: 800px;
 }
@@ -105,7 +104,7 @@
     border-radius: 15px;
 }
 .contactName{
-    width: 100px;
+    width: 150px;
     border-right: 2px solid red;
 }
 .contactInfo{

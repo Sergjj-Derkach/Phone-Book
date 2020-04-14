@@ -69,11 +69,17 @@ function editContact(){
 }
 
 function deleteContac(id){
-    console.log(id);
-    listContacts.filter(item => item.id != id);
+    listContacts = listContacts.filter(item => item.id != id);
         
     saveStorage();
+    clearContactsList();
+    renderListContacts();
+}
 
+function clearContactsList(){
+    while(contactList.firstChild){
+        contactList.removeChild(contactList.firstChild);
+    }
 }
 
 function addNewContact(){    
@@ -137,10 +143,9 @@ function saveStorage(){
 }
 
 function renderListContacts(){
-
-    listContacts.forEach(storageContactTemplte);
-    
+    listContacts.forEach(storageContactTemplte); 
 }
+
 function storageContactTemplte(item){
        
     const myFriend = newContactTemplate.replace('{{id}}', item.id)
