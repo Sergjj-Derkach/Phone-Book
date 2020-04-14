@@ -6,14 +6,15 @@ const LOCALSTORAGE_KEY = 'contacts';
 const booksphone = document.querySelector('.bookWrap');
 const contactList = document.querySelector('.contactsList');
 const form = document.querySelector('.form');
+const formNewContact = document.querySelector('.formNewContact');
+const formEditContact = document.querySelector('.formEditContact');
 const book = document.querySelector('.phoneBoоk');
 const newContactTemplate = document.querySelector('#newContactTemplate').innerHTML;
 const nameContact = document.querySelector('.nameContact');
 const numberContact = document.querySelector('.numberContact');
 const emailContact = document.querySelector('.emailContact');
 const dateBirth = document.querySelector('.inputDateBirth');
-const delte = document.querySelector('.deleteContact');
-const edit = document.querySelector('.editContact');
+
 
 
 let listContacts = [];
@@ -53,8 +54,6 @@ function onBooksPhoneClick(e){
             openFormCreateContact();
         break;
         case e.target.classList.contains('deleteContact'):
-            // console.log(e.target.parentNode.parentNode.id);
-            
             deleteContac(e.target.parentNode.parentNode.id);
             break;
         case e.target.classList.contains('editContact'):
@@ -65,7 +64,6 @@ function onBooksPhoneClick(e){
 
 function editContact(){
     console.log('edit');
-    
 }
 
 function deleteContac(id){
