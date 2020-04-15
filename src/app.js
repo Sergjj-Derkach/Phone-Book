@@ -9,11 +9,12 @@ const form = document.querySelector('.form');
 const formNewContact = document.querySelector('.formNewContact');
 const formEditContact = document.querySelector('.formEditContact');
 const book = document.querySelector('.phoneBoоk');
-const newContactTemplate = document.querySelector('#newContactTemplate').innerHTML;
+const ContactTemplate = document.querySelector('#ContactTemplate').innerHTML;
 const nameContact = document.querySelector('.nameContact');
 const numberContact = document.querySelector('.numberContact');
 const emailContact = document.querySelector('.emailContact');
 const dateBirth = document.querySelector('.inputDateBirth');
+const formEditContactTemplate = document.querySelector('#formEditTemplate').innerHTML;
 
 
 
@@ -43,7 +44,7 @@ function onFormClick(e){
         case e.target.classList.contains('addCont'):
             addNewContact();
             break;
-        case e.target.classList.contains('form'):
+        case e.target.classList.contains('formNewContact'):
             closeForm();
             break;
     }
@@ -53,18 +54,34 @@ function onBooksPhoneClick(e){
         case e.target.classList.contains('createContact'):
             openFormCreateContact();
         break;
-        case e.target.classList.contains('deleteContact'):
+        case e.target.classList.contains('deleteBtn'):
             deleteContac(e.target.parentNode.parentNode.id);
             break;
-        case e.target.classList.contains('editContact'):
-            editContact();
+        case e.target.classList.contains('editBtn'):
+            editContact(e.target.parentNode.parentNode.id);
             break;
     }
 }
 
-function editContact(){
-    console.log('edit');
+function editContact(id){
+    listContacts = listContacts.find(item => item.id == id);
+    formEditContact.innerHTML = formEdit(listContacts);
+    showFormEditContact();
+
 }
+
+
+function formEdit(item){
+    return formEditContactTemplate.replace('{{id}}',item.id)
+                                .replace('{{name}}', item.name)
+                                .replace('{{number}}',item.number)
+                                .replace('{{email}}',item.email)
+                                .replace('{{dateBirth}}',item.dateBirth);
+}
+
+
+
+
 
 function deleteContac(id){
     listContacts = listContacts.filter(item => item.id != id);
@@ -87,15 +104,20 @@ function addNewContact(){
 
 function openFormCreateContact(){
     cssBlur();
-    showForm();
+    showFormNewContact();
     resetForm();
 }
 
 function resetForm(){
     form.reset();
 }
-function showForm(){
-    form.style.display = 'block';  
+
+function showFormNewContact(){
+    formNewContact.style.display = 'block';  
+}
+
+function showFormEditContact(){
+    formEditContact.style.display = 'block';  
 }
 
 function cssBlur(){
@@ -129,7 +151,7 @@ function createContact(){
     saveStorage();
     listContacts.push(contact);    
 
-    return newContactTemplate.replace('{{id}}',contact.id)
+    return ContactTemplate.replace('{{id}}',contact.id)
                             .replace('{{name}}',contact.name)
                             .replace('{{number}}',contact.number)
                             .replace('{{email}}',contact.email)
@@ -146,7 +168,7 @@ function renderListContacts(){
 
 function storageContactTemplte(item){
        
-    const myFriend = newContactTemplate.replace('{{id}}', item.id)
+    const myFriend = ContactTemplate.replace('{{id}}', item.id)
                     .replace('{{name}}', item.name)
                     .replace('{{number}}', item.number)
                     .replace('{{email}}', item.email)

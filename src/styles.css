@@ -48,7 +48,7 @@
     display: none;
    
 }
-.newContact{
+.newContact, .editContact{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -59,36 +59,33 @@
     border-radius: 40px;
     padding: 30px;
 }
+
 .border{
     margin-top: 20px;
     border-bottom: 1px solid black;
     padding-left: 10px;
 
 }
-.newContact > div > span{
+.newContact>div>span ,.editContact>div>span{
     display: inline-block;
     width: 130px;
     font-size: 17px;
 }  
-.newContact > div > input{
+.newContact>div>input, .editContact>div>input{
     border: 1px solid yellow;
     margin-bottom: 3px;
     padding: 5px 10px;
     border-radius: 5px;
     background-color: thistle;
 }
-.saveDate{
-    background-color: yellowgreen;
-    padding: 5px;
-    border-radius: 3px;
-}
-.submit{
+
+.submit, .save{
     display: flex;
     justify-content: center;
     margin-top: 15px;
 
 }
-.addCont{
+.addCont, .saveCont{
     padding: 10px 15px;
     background-color: yellowgreen;
     font-size: 25px;
@@ -119,19 +116,19 @@
 .contactInfo > div{
     width: 27%;
 }
-.deleteContact,.editContact{
+.deleteBtn,.editBtn{
     padding: 3px 5px;
     border-radius: 3px;
     font-size: 18px;
 }
 
-.deleteContact{
+.deleteBtn{
     background-color: red;
     margin-right: 7px;
 }
-.deleteContact:hover, .editContact:hover{
+.deleteBtn:hover, .editBtn:hover{
     box-shadow: 0 0 5px 3px rgb(43, 46, 42);
 }
-.editContact{
+.editBtn{
     background-color: royalblue;
 }

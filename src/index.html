@@ -20,6 +20,7 @@
             </div>
         </div>
     </section>
+
     <form class="form formNewContact">
         <div class="newContact">
             <div class="closeForm">
@@ -46,33 +47,12 @@
             </div>
         </div> 
     </form>
-    <form class="form formEditContact">
-        <div class="editContact">
-            <div class="closeForm">
-                <button class="close">Закрыть</button>
-            </div>
-            <div class="border">
-                <span>Имя</span>
-                <input type="text" placeholder="Введите имя..." class="nameContact">
-            </div>
-            <div class="contactNumber border">
-                <span>Номер телефона</span>
-                <input type="text" placeholder="Введите номер..." class="numberContact">
-            </div>
-            <div class="contactEmail border">
-                <span>Email</span>
-                <input type="text" placeholder="Введите Email..." class="emailContact">
-            </div>
-            <div class="contactDateBirth border">
-                <span>Дата рождения</span>
-                <input type="date" class="inputDateBirth" class="contDateBirth">
-            </div>
-            <div class="save">
-                <button class="saveCont">Сохранить</button>
-            </div>
-        </div> 
-    </form>
-    <script type ="text\template" id="newContactTemplate">
+
+    <form class="form formEditContact"> </form>
+
+
+
+    <script type ="text\template" id="ContactTemplate">
         <div class="contact" id="{{id}}">
             <h3 class="contactName">{{name}}</h3>
             <div class="contactInfo">
@@ -81,10 +61,39 @@
                 <div class="dateBirthContact">{{dateBirth}}</div>
             </div>
             <div class="action">
-                <button class="deleteContact">Удалить</button>
-                <button class="editContact">Изменить</button>
+                <button class="deleteBtn">Удалить</button>
+                <button class="editBtn">Изменить</button>
             </div>
         </div>
+    </script>
+    <script type="text\template" id="formEditTemplate">
+            <div class="editContact" id="{{id}}">
+                <div class="closeForm">
+                    <button class="close">Закрыть</button>
+                </div>
+                <div class="border">
+                    <span>Имя</span>
+                    <input type="text" class="nameContact" value="{{name}}">
+                </div>
+                <div class="contactNumber border">
+                    <span>Номер телефона</span>
+                    <input type="text"  class="numberContact" value="{{number}}">
+                </div>
+                <div class="contactEmail border">
+                    <span>Email</span>
+                    <input type="text" class="emailContact" value="{{email}}">
+                </div>
+                <div class="contactDateBirth border">
+                    <span>Дата рождения</span>
+                    <input type="date" class="inputDateBirth" class="contDateBirth" value="{{dateBirth}}">
+                </div>
+                <div class="save">
+                    <button class="saveCont">Сохранить</button>
+                </div>   
+            </div>
+    </script>
+    <script type="text\template" id="editContactTempalte">
+
     </script>
 </body>
 </html>
