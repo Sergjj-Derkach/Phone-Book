@@ -7,7 +7,7 @@ import $ from "jquery";
 
 
 const LOCALSTORAGE_KEY = 'contacts';
-
+const messageDiv = document.querySelector('.message');
 const booksphone = document.querySelector('.bookWrap');
 const contactList = document.querySelector('.contactsList');
 
@@ -34,6 +34,7 @@ const ContactTemplate = document.querySelector('#ContactTemplate').innerHTML;
 
 let listContacts = [];
 let listDateBirth = [];
+let messageStr;
 let id = Date.now();
 
 
@@ -46,18 +47,28 @@ console.log(listContacts);
 booksphone.addEventListener('click', onBooksPhoneClick);
 form.addEventListener('click', onFormClick);
 formEditContact.addEventListener('click', onFormEditContact);
+messageDiv.addEventListener('click', closeMessageDiv);
 
 init();
 
 function init(){
     renderListContacts();
+    setTimeout(showMesseg, 2000);
 }
 
+function closeMessageDiv(e){
+    if(e.target.classList.contains('redX')){
+        closeDiv();
+    };
+}
 
-listContacts.forEach(dateCheck);
+function closeDiv(){
+    messageDiv.style.display = 'none';
+}
 
 function dateCheck(item){
-    let separator = '-';
+    const separator = '-';
+    const comma = ', ';
     let newDate = item.dateBirth.split(separator);
     newDate.shift();
         
@@ -66,9 +77,23 @@ function dateCheck(item){
     if(todaysDate() ==  datecontact){
         listDateBirth.push(item.name);
     } 
+
+    messageStr = listDateBirth.join(comma);
+    return messageStr;
+    
 }
 
-console.log(listDateBirth); 
+function showMesseg(){
+    listContacts.forEach(dateCheck);
+    console.log(messageStr);
+    
+    const div = document.createElement('div');
+    
+    div.className = 'messageBirthday';
+    div.innerHTML = `<div class="textMess">Сегодня день рождение: ${messageStr}</div> <span class="redX">X</span>`;
+    document.querySelector('.message').append(div);
+}
+
 
 function todaysDate(){
     let date = new Date;
