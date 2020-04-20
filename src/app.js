@@ -1,6 +1,11 @@
 import './reset.css';
 import './styles.css';
 
+import $ from "jquery";
+
+
+
+
 const LOCALSTORAGE_KEY = 'contacts';
 
 const booksphone = document.querySelector('.bookWrap');
@@ -28,7 +33,10 @@ const ContactTemplate = document.querySelector('#ContactTemplate').innerHTML;
 
 
 let listContacts = [];
+let listDateBirth = [];
 let id = Date.now();
+
+
 
 
 listContacts = localStorage.getItem(LOCALSTORAGE_KEY);
@@ -39,13 +47,37 @@ booksphone.addEventListener('click', onBooksPhoneClick);
 form.addEventListener('click', onFormClick);
 formEditContact.addEventListener('click', onFormEditContact);
 
-
 init();
 
 function init(){
     renderListContacts();
 }
 
+
+listContacts.forEach(dateCheck);
+
+function dateCheck(item){
+    let separator = '-';
+    let newDate = item.dateBirth.split(separator);
+    newDate.shift();
+        
+    let datecontact = newDate.join(separator);
+   
+    if(todaysDate() ==  datecontact){
+        listDateBirth.push(item.name);
+    } 
+}
+
+console.log(listDateBirth); 
+
+function todaysDate(){
+    let date = new Date;
+    let dateDay = date.getDate();
+    let dateMonth = `${date.getMonth() + 1}`;
+    let concatDate = `${0 + dateMonth}-${dateDay}`;
+    return concatDate;
+
+}
 function onFormClick(e){
     e.preventDefault();
 
@@ -88,20 +120,31 @@ function onFormEditContact(e){
     }
 }
 
+$(document).ready(function(){
+    $('#inputSearch').on('keyup', function() {
+      let  value = $(this).val().toLowerCase();
+      $('.contactsList .contact').filter(function() {
+         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+
 function saveEditContact(){
     console.log('saveEdit');
     
     const elModCont = document.querySelector('.editContact');
     const modContId = elModCont.getAttribute('id');
     
+    let name = nameEdit.value;
 
-    // let modCont = {
-    //     id:modContId,
-    //     name:nameEdit.value,
-    //     number:numberEdit.value,
-    //     email:emailEdit.value,
-    //     dateBirth:dateBirthEdit.value
-    // }
+
+    let modCont = {
+        id:modContId,
+        name:name,
+        number:numberEdit.value,
+        email:emailEdit.value,
+        dateBirth:dateBirthEdit.value
+    }
 
     console.log(modCont);   
 }

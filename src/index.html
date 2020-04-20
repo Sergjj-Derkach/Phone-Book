@@ -15,6 +15,9 @@
             <div class="addContact">
                 <button class="createContact">Добавить новый контакт</button>
             </div>
+            <div class="searchCont">
+                <input type="text" id="inputSearch" placeholder="Введите имя...">
+            </div>
             <div class="contactsList">
                 
             </div>
@@ -49,12 +52,12 @@
     </form>
 
     <form class="form formEditContact"> </form>
-
+  
 
 
     <script type ="text\template" id="ContactTemplate">
         <div class="contact" id="{{id}}">
-            <h3 class="contactName">{{name}}</h3>
+            <h3 class="nameContact">{{name}}</h3>
             <div class="contactInfo">
                 <div class="numbers">{{number}}</div>
                 <div class="emailContact">{{email}}</div>
