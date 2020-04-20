@@ -42,7 +42,6 @@ let id = Date.now();
 
 listContacts = localStorage.getItem(LOCALSTORAGE_KEY);
 listContacts = listContacts ? JSON.parse(listContacts) : [];
-console.log(listContacts);
 
 booksphone.addEventListener('click', onBooksPhoneClick);
 form.addEventListener('click', onFormClick);
@@ -79,14 +78,11 @@ function dateCheck(item){
     } 
 
     messageStr = listDateBirth.join(comma);
-    return messageStr;
-    
+    return messageStr;    
 }
 
 function showMesseg(){
-    listContacts.forEach(dateCheck);
-    console.log(messageStr);
-    
+    listContacts.forEach(dateCheck);   
     const div = document.createElement('div');
     
     div.className = 'messageBirthday';
@@ -103,6 +99,7 @@ function todaysDate(){
     return concatDate;
 
 }
+
 function onFormClick(e){
     e.preventDefault();
 
@@ -118,6 +115,7 @@ function onFormClick(e){
             break;
     }
 }
+
 function onBooksPhoneClick(e){
     switch(true){
         case e.target.classList.contains('createContact'):
@@ -139,7 +137,6 @@ function onFormEditContact(e){
             saveEditContact();
             break;
         case e.target.classList.contains('close'):
-            console.log('closeEdit');
             closeEditForm();
             break;
     }
@@ -156,22 +153,21 @@ $(document).ready(function(){
 
 function saveEditContact(){
     console.log('saveEdit');
+    console.log(nameEdit.value);
     
-    const elModCont = document.querySelector('.editContact');
-    const modContId = elModCont.getAttribute('id');
+    const idContact = document.querySelector('.editContact').getAttribute('id');
     
-    let name = nameEdit.value;
-
-
-    let modCont = {
-        id:modContId,
-        name:name,
-        number:numberEdit.value,
-        email:emailEdit.value,
-        dateBirth:dateBirthEdit.value
+    console.log(idContact);
+    let editCont = {
+        id: idContact,
+        name: nameEdit.value,
+        number: numberEdit.value,
+        email: emailEdit.value,
+        dateBirth: dateBirthEdit.value
     }
 
-    console.log(modCont);   
+    console.log(editCont);
+    
 }
 
 function editContact(id){
@@ -188,10 +184,6 @@ function formEdit(item){
                                 .replace('{{email}}',item.email)
                                 .replace('{{dateBirth}}',item.dateBirth);
 }
-
-
-
-
 
 function deleteContac(id){
     listContacts = listContacts.filter(item => item.id != id);
@@ -237,6 +229,7 @@ function cssBlur(){
 function closeEditForm(){
     formEditContact.style.display = 'none';
 }
+
 function closeForm(){
     form.style.display = 'none';
     deleteClassBlur();
