@@ -84,10 +84,12 @@ function dateCheck(item){
 function showMesseg(){
     listContacts.forEach(dateCheck);   
     const div = document.createElement('div');
-    
+    if(messageStr == ''){
+        messageDiv.style.display = 'none';
+    }
     div.className = 'messageBirthday';
     div.innerHTML = `<div class="textMess">Сегодня день рождение: ${messageStr}</div> <span class="redX">X</span>`;
-    document.querySelector('.message').append(div);
+    messageDiv.append(div);
 }
 
 
@@ -95,7 +97,11 @@ function todaysDate(){
     let date = new Date;
     let dateDay = date.getDate();
     let dateMonth = `${date.getMonth() + 1}`;
-    let concatDate = `${0 + dateMonth}-${dateDay}`;
+    let corкectDateMonth;
+    if(dateMonth <= '9'){
+        corкectDateMonth = `${0 + dateMonth}`;
+    }
+    let concatDate = `${corкectDateMonth}-${dateDay}`;
     return concatDate;
 
 }
