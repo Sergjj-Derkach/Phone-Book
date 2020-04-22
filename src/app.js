@@ -3,9 +3,6 @@ import './styles.css';
 
 import $ from "jquery";
 
-
-
-
 const LOCALSTORAGE_KEY = 'contacts';
 const messageDiv = document.querySelector('.message');
 const booksphone = document.querySelector('.bookWrap');
@@ -27,17 +24,13 @@ const numberEdit = document.querySelector('.numberEdit');
 const emailEdit = document.querySelector('.emailEdit');
 const dateBirthEdit = document.querySelector('.inputDateBirthEdit');
 
-
-const formEditContactTemplate = document.querySelector('#formEditTemplate').innerHTML;
 const ContactTemplate = document.querySelector('#ContactTemplate').innerHTML;
-
 
 let listContacts = [];
 let listDateBirth = [];
+let cont;
+let idEditContact;
 let messageStr;
-let id = Date.now();
-
-
 
 
 listContacts = localStorage.getItem(LOCALSTORAGE_KEY);
@@ -87,7 +80,7 @@ function showMesseg(){
     if(messageStr == ''){
         messageDiv.style.display = 'none';
     }
-    div.className = 'messageBirthday';
+    div.className = 'messageBirthDay';
     div.innerHTML = `<div class="textMess">Сегодня день рождение: ${messageStr}</div> <span class="redX">X</span>`;
     messageDiv.append(div);
 }
@@ -97,11 +90,11 @@ function todaysDate(){
     let date = new Date;
     let dateDay = date.getDate();
     let dateMonth = `${date.getMonth() + 1}`;
-    let corкectDateMonth;
+    let correctDateMonth;
     if(dateMonth <= '9'){
-        corкectDateMonth = `${0 + dateMonth}`;
+        correctDateMonth = `${0 + dateMonth}`;
     }
-    let concatDate = `${corкectDateMonth}-${dateDay}`;
+    let concatDate = `${correctDateMonth}-${dateDay}`;
     return concatDate;
 
 }
@@ -148,52 +141,49 @@ function onFormEditContact(e){
     }
 }
 
-$(document).ready(function(){
-    $('#inputSearch').on('keyup', function() {
-      let  value = $(this).val().toLowerCase();
-      $('.contactsList .contact').filter(function() {
-         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
-    });
-  });
-
-function saveEditContact(){
-    console.log('saveEdit');
-    console.log(nameEdit.value);
-    
-    const idContact = document.querySelector('.editContact').getAttribute('id');
-    
-    console.log(idContact);
-    let editCont = {
-        id: idContact,
-        name: nameEdit.value,
-        number: numberEdit.value,
-        email: emailEdit.value,
-        dateBirth: dateBirthEdit.value
-    }
-
-    console.log(editCont);
-    
-}
 
 function editContact(id){
-    let editListContacts = listContacts.find(item => item.id == id);
-    formEditContact.innerHTML = formEdit(editListContacts);
-    showFormEditContact();
+    formEditContact.style.display = 'block';
+    let contactFromTheList = listContacts.find(item => item.id == id);
+    renderEditContact(contactFromTheList);
 }
 
+function renderEditContact(item){
+    idEditContact = item.id;
+    nameEdit.value = item.name;
+    numberEdit.value = item.number;
+    emailEdit.value = item.email;
+    dateBirthEdit.value = item.dateBirth;
 
-function formEdit(item){
-    return formEditContactTemplate.replace('{{id}}',item.id)
-                                .replace('{{name}}', item.name)
-                                .replace('{{number}}',item.number)
-                                .replace('{{email}}',item.email)
-                                .replace('{{dateBirth}}',item.dateBirth);
+    cont = {
+        id:idEditContact,
+        name:item.name,
+        number:item.number,
+        email:item.email,
+        dateBirth:item.dateBirth
+    }    
+}
+
+function saveEditContact(){
+    cont = {
+        id:idEditContact,
+        name:nameEdit.value,
+        number:numberEdit.value,
+        email:emailEdit.value,
+        dateBirth:dateBirthEdit.value
+    }   
+        
+    listContacts = listContacts.filter(el => el.id != cont.id);
+    listContacts.push(cont);
+
+    saveStorage();
+    clearContactsList();
+    renderListContacts();
+    closeEditForm();    
 }
 
 function deleteContac(id){
-    listContacts = listContacts.filter(item => item.id != id);
-        
+    listContacts = listContacts.filter(item => item.id != id);  
     saveStorage();
     clearContactsList();
     renderListContacts();
@@ -205,7 +195,14 @@ function clearContactsList(){
     }
 }
 
-function addNewContact(){    
+function sortListContacts(){
+    listContacts.sort((prev,next)=>{
+        if ( prev.name < next.name ) return -1;
+        if ( prev.name < next.name ) return 1;
+    });
+}
+
+function addNewContact(){   
     renderContact();
     closeForm();
 }
@@ -224,9 +221,6 @@ function showFormNewContact(){
     formNewContact.style.display = 'block';  
 }
 
-function showFormEditContact(){
-    formEditContact.style.display = 'block';  
-}
 
 function cssBlur(){
     book.classList.add('blur');
@@ -245,7 +239,7 @@ function deleteClassBlur(){
     book.classList.remove('blur');
 }
 
-function renderContact(contact){
+function renderContact(){
     createContact();
     contactList.innerHTML += createContact();    
 }
@@ -260,9 +254,11 @@ function createContact(){
         email:emailContact.value,
         dateBirth:dateBirth.value
     }
-    saveStorage();
-    listContacts.push(contact);    
 
+    saveStorage(); 
+    listContacts.push(contact); 
+    
+      
     return ContactTemplate.replace('{{id}}',contact.id)
                             .replace('{{name}}',contact.name)
                             .replace('{{number}}',contact.number)
@@ -271,6 +267,7 @@ function createContact(){
 }
 
 function saveStorage(){
+    sortListContacts();
     localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(listContacts));
 }
 
@@ -288,3 +285,12 @@ function storageContactTemplte(item){
 
     contactList.innerHTML += myFriend;
 }
+
+$(document).ready(function(){
+    $('#inputSearch').on('keyup', function() {
+      let  value = $(this).val().toLowerCase();
+      $('.contactsList .contact').filter(function() {
+         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
